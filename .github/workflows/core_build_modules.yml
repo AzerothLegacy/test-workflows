@@ -30,8 +30,8 @@ jobs:
           submodules: 'recursive'
       - uses: actions/checkout@v4
         with:
-          repository: 'AzerothLegacy/workflows'
-          path: 'reusable-workflows'
+          repository: 'AzerothLegacy/test-workflows'
+          path: 'test-workflows'
       - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
@@ -53,7 +53,7 @@ jobs:
         run: |
           sudo apt update -y
           sudo apt install -y cppcheck
-          cppcheck --force --inline-suppr --suppressions-list=workflows/cppchecksuppressions.txt --output-file=report.txt modules/
+          cppcheck --force --inline-suppr --suppressions-list=test-workflows/cppchecksuppressions.txt --output-file=report.txt modules/
           if [ -s report.txt ]; then
             cat report.txt
             exit 1
